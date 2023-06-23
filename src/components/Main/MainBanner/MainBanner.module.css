@@ -1,0 +1,57 @@
+.main_banner {
+  height: 77vh;
+  background-color: rgba(255, 255, 255, 1);
+  display: flex;
+}
+
+.banner_img {
+  position: absolute;
+  right: 60px;
+  height: 77vh;
+
+  z-index: 0;
+}
+
+.panel_about {
+  width: 65%;
+  z-index: 1;
+  margin-left: 4%;
+  margin-top: 4%;
+  text-align: left;
+}
+
+.heading_about {
+  font-family: 'Ferry Black';
+  font-style: normal;
+  font-weight: 900;
+  font-size: 60px;
+  line-height: 72px;
+  letter-spacing: 0.01em;
+}
+
+.text_about {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.01em;
+
+  width: 58%;
+  margin: 20px 0;
+}
+
+.button_request {
+  background-color: rgba(89, 112, 255, 1);
+  color: rgba(255, 255, 255, 1);
+  border-radius: 5px;
+  width: 335px;
+  height: 59px;
+  border: none;
+  margin: 50px 0;
+
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 27px;
+  letter-spacing: 0.01em;
+}

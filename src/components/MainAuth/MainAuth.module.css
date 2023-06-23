@@ -1,0 +1,133 @@
+.main {
+  width: 100%;
+  background-color: white;
+  padding: 60px 0px 70px 0px;
+  height: 540px;
+}
+
+.container {
+  display: flex;
+}
+
+.caption_block {
+  width: 60%;
+  text-align: left;
+}
+
+.heading {
+  font-family: 'Ferry Black';
+  font-style: normal;
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 48px;
+  text-align: left;
+
+  width: 817px;
+  height: 144px;
+  margin-left: 60px;
+}
+
+.characters_img {
+  margin-left: 176px;
+  margin-top: 14px;
+}
+
+.form_container {
+  width: 40%;
+}
+
+.form_panel {
+  width: 429px;
+  height: 523px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+
+.lock_img {
+  position: absolute;
+  left: 817px;
+  top: 103px;
+  z-index: 2;
+}
+
+.form {
+}
+
+.signup_change_block {
+  padding-top: 25px;
+  margin: 0 25px 25px 25px;
+}
+
+.login_btn {
+  color: rgba(2, 148, 145, 1);
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px rgba(2, 148, 145, 1) solid;
+  width: 151px;
+  margin-right: 7px;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.signup_btn {
+  color: rgba(199, 199, 199, 1);
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px rgba(199, 199, 199, 1) solid;
+  width: 213px;
+  margin-left: 7px;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.label {
+  display: block;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: rgba(148, 148, 148, 1);
+  text-align: left;
+  margin: 15px 25px;
+  width: 379px;
+}
+
+.form_input {
+  width: 379px;
+  height: 43px;
+  border-radius: 5px;
+  border: 1px solid rgba(199, 199, 199, 1);
+}
+
+.main_btn {
+  width: 379px;
+  height: 59px;
+  background-color: rgba(89, 112, 255, 1);
+  border: none;
+  border-radius: 5px;
+  color: rgba(255, 255, 255, 1);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 27px;
+  margin-top: 30px;
+}
+
+.restore_pass_btn {
+  color: rgba(89, 112, 255, 1);
+  border: none;
+  border-bottom: 1px solid rgba(89, 112, 255, 1);
+  background-color: transparent;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.alt_auth_img {
+  margin: 5px;
+}
