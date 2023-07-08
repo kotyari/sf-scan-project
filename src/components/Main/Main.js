@@ -1,25 +1,22 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 import MainBanner from './MainBanner/MainBanner'
-import MainAuth from '../MainAuth/MainAuth'
 import MainAdvantages from './MainAdvantages/MainAdvantages'
 import MainPrice from './MainPrice/MainPrice'
 
 export default function Main() {
-  const userAuth = true
+  const data = useSelector((state) => state.authSlice)
+
   return (
     <div>
-      {(userAuth && (
+      {
         <>
           <MainBanner />
           <MainAdvantages />
           <MainPrice />
         </>
-      )) || (
-        <>
-          <MainAuth />
-        </>
-      )}
+      }
     </div>
   )
 }

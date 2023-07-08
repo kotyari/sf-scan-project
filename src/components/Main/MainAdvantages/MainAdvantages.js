@@ -17,6 +17,22 @@ export default function MainAdvantages() {
     dots: false,
     slidesToShow: 3,
     arrows: false,
+    autoplay: true,
+    infinite: true,
+    responsive: [
+      {
+        breakpoint: 760,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 425,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   }
 
   return (
@@ -93,6 +109,7 @@ export default function MainAdvantages() {
             </Slider>
           </div>
         </div>
+
         <img
           onClick={() => slider.current.slickNext()}
           src={rightarrow}

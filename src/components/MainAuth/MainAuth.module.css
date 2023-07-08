@@ -65,6 +65,7 @@
   border-bottom: 2px rgba(2, 148, 145, 1) solid;
   width: 151px;
   margin-right: 7px;
+  cursor: pointer;
 
   font-style: normal;
   font-weight: 400;
@@ -79,11 +80,17 @@
   border-bottom: 2px rgba(199, 199, 199, 1) solid;
   width: 213px;
   margin-left: 7px;
+  cursor: pointer;
 
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
+}
+
+.signup_btn:hover {
+  color: rgba(2, 148, 145, 0.5);
+  border-bottom: 2px rgba(2, 148, 145, 0.5) solid;
 }
 
 .label {
@@ -105,6 +112,21 @@
   border: 1px solid rgba(199, 199, 199, 1);
 }
 
+.form_input_error {
+  width: 379px;
+  height: 43px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 89, 89, 1);
+}
+
+.error_text {
+  position: relative;
+  color: rgba(255, 89, 89, 1);
+  margin-top: 8px;
+  margin-bottom: -24px;
+  font-size: smaller;
+}
+
 .main_btn {
   width: 379px;
   height: 59px;
@@ -117,6 +139,18 @@
   font-size: 22px;
   line-height: 27px;
   margin-top: 30px;
+  cursor: pointer;
+}
+
+.main_btn:hover {
+  background-color: rgba(2, 148, 145, 1);
+  box-shadow: 3px 3px 2px 1px rgba(2, 148, 145, 0.3);
+}
+
+.main_btn:disabled {
+  background-color: rgba(89, 112, 255, 0.5);
+  cursor: unset;
+  box-shadow: none;
 }
 
 .restore_pass_btn {
@@ -126,8 +160,21 @@
   background-color: transparent;
   margin-top: 15px;
   margin-bottom: 30px;
+  cursor: pointer;
+}
+
+.restore_pass_btn:hover {
+  color: rgba(2, 148, 145, 1);
+  border-bottom: 1px solid rgba(2, 148, 145, 1);
 }
 
 .alt_auth_img {
   margin: 5px;
+  cursor: pointer;
+}
+
+.alt_auth_img:hover {
+  outline: 2px solid rgba(2, 148, 145, 1);
+  border-radius: 3px;
+  outline-offset: -2px;
 }

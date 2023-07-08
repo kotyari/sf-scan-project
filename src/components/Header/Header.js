@@ -1,29 +1,65 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { resetAuth } from '../../store/auth'
+import { getLimits } from '../../api'
 
 import logo from '../../images/header_logo.png'
 import slash from '../../images/header_slash.png'
 import userpic from '../../images/userpic.png'
+import mobmenu from '../../images/mobmenu.png'
+
+import { useHistory } from 'react-router-dom'
 
 import css from './Header.module.css'
 
 export default function Header() {
-  const userAuth = true
+  const dispatch = useDispatch()
+  const data = useSelector((state) => state.authSlice)
   const companiesUsedCounter = 34
   const companiesLimitCounter = 100
+  let history = useHistory()
+
+  const goMain = () => {
+    history.push('/')
+  }
+
+  const exit = () => {
+    dispatch(resetAuth())
+  }
+
+  const goAuth = () => {
+    history.push('/auth')
+  }
+
+  const goMock = () => {
+    history.push('/mock')
+  }
+
+  // getLimits()
+  //   .then((res) => {
+  //     console.log(res.data)
+  //   })
+  //   .catch((error) => {
+  //     console.log(error)
+  //   })
 
   return (
     <header className={css.header}>
       <div className={css.container}>
-        <div className={css.logo}>
-          <img width={141} height={88} src={logo} alt="Скан"></img>
-        </div>
+        <img className={css.logo} src={logo} alt="Скан"></img>
         <nav className={css.nav}>
-          <p className={css.nav_p}>Главная</p>
-          <p className={css.nav_p}>Тарифы</p>
-          <p className={css.nav_p}>FAQ</p>
+          <p className={css.nav_p} onClick={goMain}>
+            Главная
+          </p>
+          <p className={css.nav_p} onClick={goMock}>
+            Тарифы
+          </p>
+          <p className={css.nav_p} onClick={goMock}>
+            FAQ
+          </p>
         </nav>
 
-        {(userAuth && (
+        {(data.accessToken && (
           <div className={css.user_panel_on}>
             <div className={css.user_stats}>
               <div className={css.companies_used}>
@@ -37,19 +73,34 @@ export default function Header() {
             </div>
             <div className={css.user_profile}>
               <div className={css.user_profile_text}>
-                <p className={css.user_name}> Алексей А.</p>
-                <p className={css.logout_text}>Выйти</p>
+                <p className={css.user_name} onClick={goMock}>
+                  {' '}
+                  Алексей А.
+                </p>
+                <p className={css.logout_text} onClick={exit}>
+                  Выйти
+                </p>
               </div>
-              <img className={css.user_pic} src={userpic} alt=""></img>
+              <img
+                className={css.user_pic}
+                src={userpic}
+                alt=""
+                onClick={goMock}
+              ></img>
             </div>
           </div>
         )) || (
           <div className={css.user_panel_off}>
-            <button className={css.signup}>Зарегистрироваться</button>
+            <button className={css.signup} onClick={goMock}>
+              Зарегистрироваться
+            </button>
             <img className={css.slash} src={slash} alt="/"></img>
-            <button className={css.login}>Войти</button>
+            <button className={css.login} onClick={goAuth}>
+              Войти
+            </button>
           </div>
         )}
+        <img src={mobmenu} className={css.mobile_menu} />
       </div>
     </header>
   )

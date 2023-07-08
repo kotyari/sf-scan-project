@@ -65,6 +65,23 @@
   margin-top: 30px;
 }
 
+.input_warning {
+  position: absolute;
+  color: rgba(255, 89, 89, 1);
+  font-size: smaller;
+  width: 242px;
+  text-align: center;
+  margin-bottom: -30px;
+}
+
+.input_date_warning {
+  color: rgba(255, 89, 89, 1);
+  font-size: smaller;
+  width: 372px;
+  text-align: center;
+  margin-top: 7px;
+}
+
 .form_input {
   font-size: 14px;
   line-height: 17px;
@@ -80,6 +97,33 @@
   box-sizing: border-box;
 }
 
+.form_input_err {
+  font-size: 14px;
+  line-height: 17px;
+  padding-left: 17px;
+  padding-right: 17px;
+  width: 242px;
+  height: 43px;
+  margin-right: 20px;
+  margin-top: 20px;
+  border: 1px solid rgba(255, 89, 89, 1);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  box-sizing: border-box;
+  color: rgba(255, 89, 89, 1);
+}
+
+.form_input_err:enabled {
+  border: 1px solid rgba(255, 89, 89, 1);
+  color: rgba(255, 89, 89, 1);
+}
+
+.form_input_err:focus {
+  border: 1px solid rgba(255, 89, 89, 1);
+  color: rgba(255, 89, 89, 1);
+  outline: 0px rgba(255, 89, 89, 1);
+}
+
 .date_input {
   font-size: 14px;
   line-height: 17px;
@@ -93,12 +137,45 @@
   height: 43px;
   width: 176px;
   cursor: pointer;
-  background-image: url('../../images/arDown.png');
-  background-repeat: no-repeat;
-  background-position: 95% 50%;
 }
-.date_input:focus {
-  background-image: none;
+.date_input_err {
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  margin-right: 20px;
+  margin-top: 20px;
+  border: 1px solid rgba(255, 89, 89, 1);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 43px;
+  width: 176px;
+  cursor: pointer;
+}
+.date_input_err:enabled {
+  border: 1px solid rgba(255, 89, 89, 1);
+  color: rgba(255, 89, 89, 1);
+}
+
+.date_input_err:focus {
+  border: 1px solid rgba(255, 89, 89, 1);
+  color: rgba(255, 89, 89, 1);
+  outline: 0px rgba(255, 89, 89, 1);
+}
+
+input[type='date'] {
+  font-family: 'Inter';
+  background: #fff url('../../images/arDown.png') 97% 50% no-repeat;
+  cursor: unset;
+}
+
+[type='date']::-webkit-inner-spin-button {
+  display: none;
+}
+
+[type='date']::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  cursor: pointer;
 }
 
 .form_input::placeholder {
@@ -114,6 +191,7 @@
   font-size: 14px;
   line-height: 17px;
   padding-left: 22px;
+  margin-top: 20px;
   width: 242px;
   height: 43px;
 
@@ -162,6 +240,29 @@ input:checked + .checkbox_label {
   width: 305px;
   height: 59px;
   background-color: rgba(89, 112, 255, 1);
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 27px;
+  letter-spacing: 0.03em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search_btn:hover {
+  background-color: rgba(2, 148, 145, 1);
+  box-shadow: 3px 3px 2px 1px rgba(2, 148, 145, 0.3);
+}
+
+.search_btn_off {
+  margin-left: 112px;
+  margin-top: 145px;
+  margin-right: 39px;
+  width: 305px;
+  height: 59px;
+  background-color: rgba(89, 112, 255, 0.5);
+  color: #ffffff;
   font-weight: 500;
   font-size: 22px;
   line-height: 27px;
@@ -169,7 +270,7 @@ input:checked + .checkbox_label {
   border: none;
   border-radius: 5px;
 
-  color: #ffffff;
+  cursor: unset;
 }
 
 .footnote {
