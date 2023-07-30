@@ -1,3 +1,9 @@
-import { login, getLimits } from './account'
+import {
+  login,
+  getLimits,
+  sendHistograms,
+  takeDocsId,
+  takeDocs,
+} from './account'
 
-export { login, getLimits }
+export { login, getLimits, sendHistograms, takeDocsId, takeDocs }

@@ -21,7 +21,7 @@ export default function MainAdvantages() {
     infinite: true,
     responsive: [
       {
-        breakpoint: 760,
+        breakpoint: 768,
         settings: {
           slidesToShow: 2,
         },

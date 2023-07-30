@@ -1,10 +1,10 @@
 .search_page {
   width: 100%;
-  height: 94vh;
 
   display: flex;
   justify-content: space-between;
   padding: 50px 0 90px 0;
+  overflow-x: hidden;
 }
 
 .search_img {
@@ -199,11 +199,21 @@ input[type='date'] {
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05);
   border-radius: 5px;
   box-sizing: border-box;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: #fff url('../../images/arDown.png') 97% 50% no-repeat;
+  cursor: unset;
 }
 
 .form_select::placeholder {
   color: rgba(148, 148, 148, 1);
   text-align: center;
+}
+
+.form_select::-ms-expand {
+  display: none;
 }
 
 .search_range_inputs {
@@ -283,4 +293,364 @@ input:checked + .checkbox_label {
   letter-spacing: 0.03em;
 
   color: rgba(148, 148, 148, 1);
+}
+
+.doc_img {
+  display: none;
+}
+
+.search_mini {
+  display: none;
+}
+
+@media screen and (max-width: 1090px) {
+  .search_page {
+    padding: 40px 0 70px 0;
+    display: block;
+  }
+
+  .search_img {
+    width: 370px;
+    height: 480px;
+    margin-top: 90px;
+  }
+
+  .form_wrapper {
+    margin-left: 33px;
+  }
+
+  .form_heading {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 40px;
+    margin-left: 5px;
+    width: 716px;
+    height: 76px;
+  }
+
+  .form_subtitle {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 20px;
+    margin-left: 5px;
+    margin-top: 20px;
+    width: 434px;
+    height: 38px;
+  }
+
+  .search_form {
+    width: 700px;
+    height: 443px;
+    margin: 20px auto;
+  }
+
+  .form_label {
+    font-size: 14px;
+    line-height: 18px;
+    margin-left: 34px;
+    margin-top: 20px;
+  }
+
+  .input_warning {
+    width: 202px;
+    margin-bottom: -20px;
+  }
+
+  .input_date_warning {
+    width: 272px;
+    margin-top: 6px;
+  }
+
+  .form_input {
+    font-size: 12px;
+    line-height: 14px;
+    padding-left: 14px;
+    padding-right: 14px;
+    width: 202px;
+    height: 33px;
+    margin-right: 15px;
+    margin-top: 15px;
+  }
+
+  .form_input_err {
+    font-size: 12px;
+    line-height: 14px;
+    padding-left: 14px;
+    padding-right: 14px;
+    width: 202px;
+    height: 33px;
+    margin-right: 15px;
+    margin-top: 15px;
+  }
+
+  .form_select {
+    font-size: 12px;
+    line-height: 14px;
+    padding-left: 14px;
+    padding-right: 14px;
+    width: 202px;
+    height: 33px;
+    margin-right: 15px;
+    margin-top: 15px;
+  }
+
+  .date_input {
+    font-size: 12px;
+    line-height: 14px;
+    margin-top: 15px;
+    height: 33px;
+    width: 136px;
+  }
+  .date_input_err {
+    font-size: 12px;
+    line-height: 14px;
+    margin-top: 15px;
+    height: 33px;
+    width: 136px;
+  }
+
+  .form_right {
+    margin-left: 50px;
+  }
+
+  .search_btn {
+    margin-left: 0;
+    margin-top: 110px;
+    margin-right: 29px;
+    width: 205px;
+    height: 39px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+  }
+
+  .search_btn_off {
+    margin-left: 0;
+    margin-top: 110px;
+    margin-right: 29px;
+    width: 205px;
+    height: 39px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+  }
+
+  .form_checkbox:first-child {
+    margin-top: 20px;
+  }
+
+  .form_checkbox + .checkbox_label {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .form_checkbox {
+    margin-top: 10px;
+    margin-right: 13px;
+  }
+  .footnote {
+    margin-left: 0;
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 13px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .form_heading {
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 900;
+    width: 400px;
+    height: 150px;
+  }
+
+  .form_subtitle {
+    font-size: 18px;
+
+    width: 404px;
+    height: 33px;
+  }
+
+  .search_page {
+    padding: 40px 0 10px 0;
+  }
+
+  .search_form {
+    flex-direction: column;
+    align-items: center;
+    width: 90vw;
+    height: 860px;
+    margin: 30px 0px;
+  }
+  .form_left {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form_right {
+    margin: 0;
+    height: unset;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search_btn_off {
+    margin: 0;
+    width: 93%;
+    height: 50px;
+    margin-top: -100px;
+  }
+
+  .search_btn {
+    margin: 0;
+    width: 93%;
+    height: 50px;
+    margin-top: -100px;
+  }
+
+  .form_label {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    margin: 20px 0px;
+
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.36px;
+  }
+
+  .form_input {
+    width: 99%;
+    height: 6vh;
+    padding: 0;
+    margin: 10px 0;
+
+    font-size: 18px;
+  }
+
+  .form_input_err {
+    width: 99%;
+    height: 6vh;
+    padding: 0;
+    margin: 10px 0;
+
+    font-size: 18px;
+  }
+
+  .form_select {
+    width: 99%;
+    height: 6vh;
+    padding: 0;
+    margin: 10px 0;
+
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.36px;
+  }
+
+  .form_select_err {
+    width: 99%;
+    height: 6vh;
+    padding: 0;
+    margin: 10px 0;
+
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.36px;
+  }
+
+  .form_checkbox {
+    display: none;
+  }
+
+  .checkbox_label {
+    display: none;
+  }
+
+  .search_range_inputs {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .date_input {
+    width: 99%;
+    height: 6vh;
+    padding: 0;
+    margin: 10px 0;
+  }
+  .date_input_err {
+    width: 99%;
+    height: 6vh;
+    padding: 0;
+    margin: 10px 0;
+  }
+
+  .input_date_warning {
+    font-size: 16px;
+
+    margin-bottom: -46px;
+  }
+
+  .input_warning {
+    font-size: 16px;
+    margin-top: 100px;
+  }
+
+  .search_img {
+    display: none;
+  }
+
+  .doc_img {
+    display: block;
+    position: absolute;
+    left: 330px;
+    top: 28vh;
+  }
+
+  .search_mini {
+    display: block;
+    margin-left: 30vw;
+    width: 70vw;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .form_wrapper {
+    margin: 10px;
+  }
+
+  .doc_img {
+    left: 270px;
+    top: 40vh;
+    z-index: 0;
+    height: 50px;
+    width: 50px;
+  }
+
+  .form_subtitle {
+    width: 290px;
+    height: auto;
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+
+  .form_heading {
+    font-size: 24px;
+    width: 300px;
+  }
 }

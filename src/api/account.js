@@ -7,78 +7,194 @@ function login(name, password) {
     login: name,
     password,
   })
+ 
 }
 
 function getLimits() {
-  return axios.get(`${baseUrl}/api/v1/account/info`, {})
+  return axios
+    .get(`${baseUrl}/api/v1/account/info`, {
+      headers: {
+        Authorization: localStorage.getItem('auth')
+          ? `Bearer ${JSON.parse(localStorage.getItem('auth')).accessToken}`
+          : '',
+      },
+    })
+    .then((res) => res.data)
 }
 
-function histograms(
-  intervalType,
-  histogramTypes,
-  issueDateInterval,
-  searchContext,
-  similarMode,
+function sendHistograms( 
+  issueDateInterval, 
+  inn,
+  tonality,
   limit,
-  sortType,
-  sortDirectionType,
-  attributeFilters
+  maxFullness,
+  inBusinessNews,
+  onlyMainRole,
+  onlyWithRiskFactors,
+  excludeTechNews,
+  excludeAnnouncements,
+  excludeDigests  
 ) {
-  return axios.post(`${baseUrl}/api/v1/objectsearch/histograms`, {
-    issueDateInterval: {
-      startDate: '2019-01-01T00:00:00+03:00',
-      endDate: '2022-08-31T23:59:59+03:00',
-    },
-    searchContext: {
-      targetSearchEntitiesContext: {
-        targetSearchEntities: [
-          {
-            type: 'company',
-            sparkId: null,
-            entityId: null,
-            inn: 7710137066,
-            maxFullness: true,
-            inBusinessNews: null,
+  return axios
+    .post(
+      `${baseUrl}/api/v1/objectsearch/histograms`,
+      {
+       
+        issueDateInterval,
+        searchContext: {
+          targetSearchEntitiesContext: {
+            targetSearchEntities: [
+              {
+                type: 'company',
+                sparkId: null,
+                entityId: null,
+                inn,
+                maxFullness,
+                inBusinessNews,
+              },
+            ],
+            onlyMainRole,
+            tonality,
+            onlyWithRiskFactors,
+            riskFactors: {
+              and: [],
+              or: [],
+              not: [],
+            },
+            themes: {
+              and: [],
+              or: [],
+              not: [],
+            },
           },
-        ],
-        onlyMainRole: true,
-        tonality: 'any',
-        onlyWithRiskFactors: false,
-        riskFactors: {
-          and: [],
-          or: [],
-          not: [],
+          themesFilter: {
+            and: [],
+            or: [],
+            not: [],
+          },
         },
-        themes: {
-          and: [],
-          or: [],
-          not: [],
+        searchArea: {
+          includedSources: [],
+          excludedSources: [],
+          includedSourceGroups: [],
+          excludedSourceGroups: [],
         },
+        attributeFilters: {
+          excludeTechNews,
+          excludeAnnouncements,
+          excludeDigests,
+        },
+        similarMode: 'duplicates',
+        limit,
+        sortType: 'issueDate',
+        sortDirectionType: 'desc',
+        intervalType: 'month',
+        histogramTypes: ['totalDocuments', 'riskFactors'],
       },
-      themesFilter: {
-        and: [],
-        or: [],
-        not: [],
-      },
-    },
-    searchArea: {
-      includedSources: [],
-      excludedSources: [],
-      includedSourceGroups: [],
-      excludedSourceGroups: [],
-    },
-    attributeFilters: {
-      excludeTechNews: true,
-      excludeAnnouncements: true,
-      excludeDigests: true,
-    },
-    similarMode: 'duplicates',
-    limit: 1000,
-    sortType: 'sourceInfluence',
-    sortDirectionType: 'desc',
-    intervalType: 'month',
-    histogramTypes: ['totalDocuments', 'riskFactors'],
-  })
+      {
+        headers: {
+          Authorization: `Bearer ${
+            JSON.parse(localStorage.getItem('auth')).accessToken
+          }`,
+        },
+      }
+    )
+    .then((res) => res.data)
 }
 
-export { login, getLimits }
+function takeDocsId( 
+  issueDateInterval,
+  inn,
+  tonality,
+  limit,
+  maxFullness,
+  inBusinessNews,
+  onlyMainRole,
+  onlyWithRiskFactors,
+  excludeTechNews,
+  excludeAnnouncements,
+  excludeDigests
+) {
+  return axios
+    .post(
+      `${baseUrl}/api/v1/objectsearch`,
+      {
+        issueDateInterval,
+        searchContext: {
+          targetSearchEntitiesContext: {
+            targetSearchEntities: [
+              {
+                type: 'company',
+                sparkId: null,
+                entityId: null,
+                inn,
+                maxFullness,
+                inBusinessNews,
+              },
+            ],
+            onlyMainRole,
+            tonality: 'any',
+            onlyWithRiskFactors,
+            riskFactors: {
+              and: [],
+              or: [],
+              not: [],
+            },
+            themes: {
+              and: [],
+              or: [],
+              not: [],
+            },
+          },
+          themesFilter: {
+            and: [],
+            or: [],
+            not: [],
+          },
+        },
+        searchArea: {
+          includedSources: [],
+          excludedSources: [],
+          includedSourceGroups: [],
+          excludedSourceGroups: [],
+        },
+        attributeFilters: {
+          excludeTechNews,
+          excludeAnnouncements,
+          excludeDigests,
+        },
+        similarMode: 'duplicates',
+        limit,
+        sortType: 'issueDate',
+        sortDirectionType: 'desc',
+        intervalType: 'month',
+        histogramTypes: ['totalDocuments', 'riskFactors'],
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${
+            JSON.parse(localStorage.getItem('auth')).accessToken
+          }`,
+        },
+      }
+    )
+    .then((res) => res.data)
+}
+
+function takeDocs(ids) {
+  return axios
+    .post(
+      `${baseUrl}/api/v1/documents`,
+      { ids },
+      {
+        headers: {
+          Authorization: `Bearer ${
+            JSON.parse(localStorage.getItem('auth')).accessToken
+          }`,
+        },
+      }
+    )
+    .then((res) => res.data)
+}
+
+export { login, getLimits, sendHistograms, takeDocsId, takeDocs }

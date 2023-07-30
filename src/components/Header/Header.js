@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { resetAuth } from '../../store/auth'
 import { getLimits } from '../../api'
+import { useState } from 'react'
+import MobileMenu from '../MobileMenu/MobileMenu'
 
 import logo from '../../images/header_logo.png'
 import slash from '../../images/header_slash.png'
@@ -15,33 +17,47 @@ import css from './Header.module.css'
 export default function Header() {
   const dispatch = useDispatch()
   const data = useSelector((state) => state.authSlice)
-  const companiesUsedCounter = 34
-  const companiesLimitCounter = 100
-  let history = useHistory()
+  const history = useHistory()
+  const [isOpened, setIsOpened] = useState(false)
+
+  const [counters, setCounters] = useState({ user: 0, limit: 0 })
 
   const goMain = () => {
     history.push('/')
+    setIsOpened(false)
   }
 
   const exit = () => {
     dispatch(resetAuth())
+    setIsOpened(false)
   }
 
   const goAuth = () => {
     history.push('/auth')
+    setIsOpened(false)
   }
 
   const goMock = () => {
     history.push('/mock')
+    setIsOpened(false)
   }
 
-  // getLimits()
-  //   .then((res) => {
-  //     console.log(res.data)
-  //   })
-  //   .catch((error) => {
-  //     console.log(error)
-  //   })
+  useEffect(() => {
+    if (data.accessToken) {
+      getLimits()
+        .then((res) => {
+          const { usedCompanyCount, companyLimit } = res.eventFiltersInfo || {}
+
+          setCounters({
+            user: usedCompanyCount,
+            limit: companyLimit,
+          })
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+  }, [data.accessToken])
 
   return (
     <header className={css.header}>
@@ -64,11 +80,11 @@ export default function Header() {
             <div className={css.user_stats}>
               <div className={css.companies_used}>
                 <p className={css.cu_text}>Использовано компаний </p>
-                <p className={css.cu_counter}>{companiesUsedCounter}</p>
+                <p className={css.cu_counter}>{counters.user}</p>
               </div>
               <div className={css.companies_limit}>
                 <p className={css.cl_text}>Лимит по компаниям</p>
-                <p className={css.cl_counter}>{companiesLimitCounter}</p>
+                <p className={css.cl_counter}>{counters.limit}</p>
               </div>
             </div>
             <div className={css.user_profile}>
@@ -100,8 +116,23 @@ export default function Header() {
             </button>
           </div>
         )}
-        <img src={mobmenu} className={css.mobile_menu} />
+        <img
+          src={mobmenu}
+          className={css.mobile_menu}
+          onClick={() => {
+            setIsOpened((old) => !old)
+          }}
+        />
       </div>
+      <MobileMenu
+        isOpened={isOpened}
+        setIsOpened={setIsOpened}
+        goMain={goMain}
+        goMock={goMock}
+        goAuth={goAuth}
+        exit={exit}
+        data={data}
+      />
     </header>
   )
 }

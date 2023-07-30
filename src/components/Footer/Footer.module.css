@@ -5,6 +5,7 @@
   color: rgba(255, 255, 255, 1);
   font-style: normal;
   font-weight: 400;
+  margin-top: 2vh;
 }
 
 .container {
@@ -30,6 +31,12 @@
   margin-top: 20px;
   font-size: 12px;
   line-height: 15px;
+}
+
+@media screen and (min-width: 1500px) {
+  .footer {
+    margin-top: 15vh;
+  }
 }
 
 @media screen and (max-width: 1024px) {

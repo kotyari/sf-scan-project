@@ -45,7 +45,7 @@ export default function MainAuth() {
     login(loginValue, passValue)
       .then((res) => {
         dispatch(setAuth(res.data))
-        localStorage.setItem('auth', JSON.stringify(res.data))()
+        localStorage.setItem('auth', JSON.stringify(res.data))
       })
       .catch((error) => {
         setLoginError(true)
@@ -53,7 +53,7 @@ export default function MainAuth() {
   }
 
   return (
-    <main className={css.main}>
+    <div className={css.main_auth}>
       <div className={css.container}>
         <div className={css.caption_block}>
           <h1 className={css.heading}>
@@ -130,6 +130,11 @@ export default function MainAuth() {
           <img className={css.lock_img} src={lock} alt=""></img>
         </div>
       </div>
-    </main>
+      <img
+        className={css.characters_img_mobile}
+        src={characters}
+        alt="Два человека и ключ"
+      ></img>
+    </div>
   )
 }

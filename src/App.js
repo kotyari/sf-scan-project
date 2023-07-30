@@ -8,6 +8,7 @@ import SearchPage from './components/SearchPage/SearchPage'
 import MainAuth from './components/MainAuth/MainAuth'
 import MockPage from './components/MockPage/MockPage'
 import SearchResult from './components/SearchResult/SearchResult'
+import MobileMenu from './components/MobileMenu/MobileMenu'
 import { Switch, Route, Redirect, BrowserRouter } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { resetAuth } from './store/auth'
@@ -20,7 +21,6 @@ function App() {
       const { expire } = JSON.parse(localStorage.getItem('auth'))
       const now = new Date().getTime()
 
-      console.log(new Date(expire).getTime())
       if (now > new Date(expire).getTime()) {
         dispatch(resetAuth())
       }
@@ -49,12 +49,11 @@ function App() {
             <SearchPage />
           </PrivateRoute>
 
-          <PrivateRoute path="/result">
+          {/* <PrivateRoute path="/result">
             <SearchResult />
-          </PrivateRoute>
+          </PrivateRoute> */}
           <Redirect to="/" />
         </Switch>
-
         <Footer />
       </div>
     </BrowserRouter>
