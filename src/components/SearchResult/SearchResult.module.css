@@ -95,6 +95,8 @@
 .carousel_start {
   position: absolute;
   background-color: rgba(2, 148, 145, 1);
+  border-radius: 5px 0 0 5px;
+
   width: 133px;
   height: 138px;
   color: white;
@@ -168,7 +170,8 @@
   letter-spacing: 0.32px;
 
   margin-top: 19px;
-  margin-bottom: 24px;
+  margin-bottom: 14px;
+  height: 46px;
 }
 
 .doc_date {
@@ -226,7 +229,7 @@
   font-size: 16px;
   font-weight: 400;
   letter-spacing: 0.32px;
-  height: 260px;
+  height: 230px;
 
   margin-top: 20px;
 }
@@ -320,22 +323,22 @@
 
 @media screen and (max-width: 1090px) {
   .banner_heading {
-    width: 500px;
+    width: 300px;
     font-weight: 800;
     font-size: 33px;
     letter-spacing: 1;
 
-    margin: 69px 40px 36px 60px;
+    margin: 69px 40px 36px 50px;
   }
 
   .banner_subtitle {
-    font-size: 20px;
-    margin-left: 60px;
+    font-size: 18px;
+    margin-left: 50px;
   }
 
   .searching_img {
-    width: 353px;
-    height: 239px;
+    width: 323px;
+    height: 219px;
     margin: 25px 0px -18px -30px;
   }
 
@@ -346,10 +349,9 @@
     font-size: 16px;
   }
 
-  /* SLIIIIIIIIIIIDEEEEEEEEEER */
-
   .slider_carousel {
     width: 90%;
+    margin-left: 10px;
   }
 
   .arrow {
@@ -358,11 +360,13 @@
   }
 
   .carousel_start {
-    width: 120px;
+    width: 116px;
+    height: 138px;
+    color: white;
+    border-radius: 5px 0 0 5px;
   }
 
   .carousel_p {
-    margin: 17px 27px 9px 28px;
     font-size: 18px;
   }
 
@@ -376,6 +380,267 @@
 
   .card_p {
     font-size: 13px;
-    margin: 17px 0px 9px 0px;
+  }
+
+  .doc_block {
+    width: 40vw;
+    height: 694px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+    padding: 0 15px;
+  }
+
+  .doc_toptitles {
+    height: 33px;
+    margin-top: 8px;
+    margin-bottom: 5px;
+  }
+
+  .doc_source {
+    font-size: 14px;
+  }
+
+  .doc_date {
+    margin-right: 12px;
+    font-size: 14px;
+  }
+
+  .doc_title {
+    height: 52px;
+    font-size: 16px;
+    letter-spacing: 0.12px;
+  }
+
+  .doc_img {
+    width: 100%;
+    height: 130px;
+  }
+
+  .doc_text {
+    opacity: 0.7;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.12px;
+    height: 280px;
+
+    margin-top: 20px;
+  }
+
+  .doc_lowerpart {
+    margin-bottom: 15px;
+    font-size: 14px;
+  }
+
+  .doc_readbtn {
+    width: 203px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .banner {
+    flex-direction: column;
+  }
+
+  .banner_heading {
+    width: 90vw;
+    font-weight: 900;
+    font-size: 26px;
+    letter-spacing: 0.28;
+
+    margin: 10px auto;
+  }
+
+  .banner_subtitle {
+    width: 90vw;
+    font-size: 18px;
+    margin: auto;
+  }
+
+  .searching_img {
+    width: 320px;
+    height: 214px;
+    margin: auto;
+  }
+
+  .slider_heading {
+    letter-spacing: 0.28px;
+    margin: 10px auto;
+    width: 310px;
+  }
+  .publication_qty {
+    font-size: 18px;
+    margin: 10px auto;
+    width: 310px;
+  }
+
+  .general_slider {
+    margin: 0;
+  }
+
+  .slider_carousel {
+    margin-top: 40px;
+  }
+
+  .slider_inside {
+    width: 298px;
+    height: 140px;
+  }
+
+  .carousel_start {
+    position: static;
+    border-radius: 5px 5px 0px 0px;
+    display: flex;
+    justify-content: space-around;
+
+    width: 298px;
+    height: 75px;
+  }
+
+  .carousel_p {
+    margin: 20px 0 20px 20px;
+
+    font-size: 20px;
+  }
+
+  .slider_cards {
+    margin: 0;
+    text-align: center;
+  }
+
+  .slide_wrapper {
+    width: 298px;
+    height: 65px;
+  }
+
+  .slider_card {
+    border: none;
+    display: flex;
+    justify-content: space-around;
+    width: 298px;
+    height: 65px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .card_p {
+    margin: 20px 20px 20px 0;
+    font-size: 16px;
+  }
+
+  .docs_heading {
+    margin: 50px 10px 25px 10px;
+  }
+
+  .docs_grid {
+    display: grid;
+    grid-template-columns: auto;
+    justify-content: space-around;
+  }
+
+  .doc_block {
+    width: 80vw;
+    height: 694px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+    padding: 0 15px;
+  }
+
+  .doc_toptitles {
+    height: 33px;
+    margin-top: 8px;
+    margin-bottom: 5px;
+  }
+
+  .doc_source {
+    font-size: 14px;
+  }
+
+  .doc_date {
+    margin-right: 12px;
+    font-size: 14px;
+  }
+
+  .doc_title {
+    height: 52px;
+    font-size: 16px;
+    letter-spacing: 0.12px;
+  }
+
+  .doc_img {
+    width: 100%;
+    height: 130px;
+  }
+
+  .doc_text {
+    opacity: 0.7;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.12px;
+    height: 280px;
+
+    margin-top: 20px;
+  }
+
+  .doc_lowerpart {
+    margin-bottom: 15px;
+    font-size: 14px;
+  }
+
+  .doc_readbtn {
+    width: 203px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .slider_inside {
+    width: 70vw;
+  }
+
+  .carousel_start {
+    width: 70vw;
+  }
+
+  .slider_card {
+    width: 70vw;
+  }
+
+  .carousel_p {
+    margin: 5px;
+    margin-top: 20px;
+  }
+
+  .card_p {
+    font-size: 13px;
+  }
+
+  .doc_title {
+    font-size: 14px;
+  }
+
+  .doc_category {
+    font-size: 10px;
+    height: 18px;
+  }
+
+  .doc_text {
+    font-size: 12px;
+    height: 310px;
+  }
+
+  .doc_readbtn {
+    width: 195px;
+  }
+  .doc_words {
+    margin-top: 20px;
+  }
+
+  .docs_morebtn {
+    width: 80vw;
+    height: 44px;
+    font-size: 18px;
   }
 }

@@ -32,16 +32,16 @@ export default function SearchPage() {
   const [excludeAnnounce, setExcludeAnnounce] = useState(true)
   const [excludeDigests, setExcludeDigests] = useState(true)
 
-  const [isLoading, setLoading] = useState(false)
+  // const [isLoading, setLoading] = useState(false)
   const [summary, setSummary] = useState(null)
   const [publications, setPublications] = useState(null)
+  const [isSubmit, setSubmit] = useState(false)
 
   const dispatch = useDispatch()
   const data = useSelector((state) => state.searchSlice)
 
   useEffect(() => {
     if (dateStart && dateEnd) {
-      // dayjs(dateStart).format('DD-MM-YYYY')
       checkDate(dateStart, dateEnd)
     }
   }, [dateStart, dateEnd])
@@ -119,50 +119,51 @@ export default function SearchPage() {
   //
   const submit = (e) => {
     e.preventDefault()
-    setLoading(true)
+    setSubmit(true)
+    // setLoading(true)
 
-    Promise.all([
-      sendHistograms(
-        {
-          startDate: new Date(dateStart),
-          endDate: new Date(dateEnd),
-        },
-        innValue,
-        tonalityValue,
-        qtyValue,
-        maxFull,
-        business,
-        mainRole,
-        withRisk,
-        excludeTech,
-        excludeAnnounce,
-        excludeDigests
-      ),
-
-      takeDocsId(
-        {
-          startDate: new Date(dateStart),
-          endDate: new Date(dateEnd),
-        },
-        innValue,
-        tonalityValue,
-        qtyValue,
-        maxFull,
-        business,
-        mainRole,
-        withRisk,
-        excludeTech,
-        excludeAnnounce,
-        excludeDigests
-      ),
-    ])
-      .then((values) => {
-        const [resSummary, resPublications] = values
-        setSummary(resSummary.data)
-        setPublications(resPublications)
+    sendHistograms(
+      {
+        startDate: new Date(dateStart),
+        endDate: new Date(dateEnd),
+      },
+      innValue,
+      tonalityValue,
+      qtyValue,
+      maxFull,
+      business,
+      mainRole,
+      withRisk,
+      excludeTech,
+      excludeAnnounce,
+      excludeDigests
+    )
+      .then((res) => {
+        setSummary(res.data)
       })
       .catch((e) => console.log(e))
-      .finally(() => setLoading(false))
+    // .finally(() => setLoading(false))
+
+    takeDocsId(
+      {
+        startDate: new Date(dateStart),
+        endDate: new Date(dateEnd),
+      },
+      innValue,
+      tonalityValue,
+      qtyValue,
+      maxFull,
+      business,
+      mainRole,
+      withRisk,
+      excludeTech,
+      excludeAnnounce,
+      excludeDigests
+    )
+      .then((res) => {
+        setPublications(res)
+      })
+      .catch((e) => console.log(e))
   }
 
   const isDisabled =
@@ -175,11 +176,11 @@ export default function SearchPage() {
 
   return (
     <>
-      {summary ? (
+      {isSubmit ? (
         <SearchResult
           summary={summary}
           publications={publications}
-          isLoading={isLoading}
+          // isLoading={isLoading}
         />
       ) : (
         <div className={css.search_page}>
@@ -342,13 +343,6 @@ export default function SearchPage() {
                   Включать сводки новостей
                 </label>
                 <br></br>
-                <p
-                  onClick={() => {
-                    navigator.clipboard.writeText('7710137066')
-                  }}
-                >
-                  7710137066
-                </p>
                 <button
                   className={!isDisabled ? css.search_btn_off : css.search_btn}
                   disabled={!isDisabled}

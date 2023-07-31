@@ -9,14 +9,9 @@ import SliderCarousel from './SliderCarousel'
 import PublicationCard from '../PublicationCard/PublicationCard'
 import { takeDocs } from '../../api'
 
-export default function SearchResult({ summary, publications, isLoading }) {
-  const data = summary
-  const articlesArr = summary[0].data
-  const sum = articlesArr.reduce(function (accumulator, currentValue) {
-    return accumulator + currentValue.value
-  }, 0)
-
+export default function SearchResult({ summary, publications }) {
   const [publicationData, setPublicationData] = useState('')
+  const [offset, setOffset] = useState(10)
 
   useEffect(() => {
     if (publications) {
@@ -29,6 +24,18 @@ export default function SearchResult({ summary, publications, isLoading }) {
         .catch((error) => console.log(error))
     }
   }, [publications])
+
+  const getSum = () => {
+    if (!summary || !summary.length) return null
+
+    return summary[0].data.reduce(function (accumulator, currentValue) {
+      return accumulator + currentValue.value
+    }, 0)
+  }
+
+  const showMorePublications = () => {
+    setOffset((oldState) => oldState + 10)
+  }
 
   return (
     <div className={css.search_result}>
@@ -46,19 +53,25 @@ export default function SearchResult({ summary, publications, isLoading }) {
       </div>
       <div className={css.general_slider}>
         <h2 className={css.slider_heading}>Общая сводка</h2>
-        <p className={css.publication_qty}>Найдено {sum} вариантов</p>
-        <SliderCarousel data={data} publicationData={publicationData} />
+        <p className={css.publication_qty}>Найдено {getSum()} вариантов</p>
+        <SliderCarousel data={summary} />
       </div>
-      {publications && (
+      {publicationData && (
         <div className={css.docs_list}>
           <h2 className={css.docs_heading}>Список документов</h2>
           <div className={css.docs_grid}>
             {publicationData &&
-              publicationData.map((item) => (
-                <PublicationCard item={item} key={item.ok.id} />
-              ))}
+              publicationData
+                .slice(0, offset)
+                .map((item) => (
+                  <PublicationCard item={item} key={item.ok.id} />
+                ))}
           </div>
-          <button className={css.docs_morebtn}>Показать больше</button>
+          {offset < publicationData.length && (
+            <button onClick={showMorePublications} className={css.docs_morebtn}>
+              Показать больше
+            </button>
+          )}
         </div>
       )}
     </div>

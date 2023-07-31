@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useMemo } from 'react'
 import css from './SearchResult.module.css'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
@@ -8,47 +8,57 @@ import load from '../../images/spinner.png'
 import leftarrow from '../../images/arrowleft.png'
 import rightarrow from '../../images/arrowright.png'
 
-export default function SliderCarousel({ data, publicationData }) {
-  const articles = data[0].data
-
-  const risks = JSON.parse(
-    JSON.stringify(data[1].data).replaceAll('"value"', '"risksValue"')
-  )
-
-  risks.map((item) => delete item.date)
-
-  const combinedData = articles.map((item, index) => ({
-    ...item,
-    ...risks[index],
-  }))
-
+export default function SliderCarousel({ data }) {
   const slider = useRef(null)
-  const settings = {
-    dots: false,
-    arrows: false,
-    slidesToShow: data[0].data.length > 8 ? 8 : data[0].data.length,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 1090,
-        settings: {
-          slidesToShow: data[0].data.length > 6 ? 6 : data[0].data.length,
+
+  const combinedData = useMemo(() => {
+    if (!data && !data?.length) return []
+    const [totalDocuments, riskFactors] = data
+
+    const risks = JSON.parse(
+      JSON.stringify(riskFactors.data).replaceAll('"value"', '"risksValue"')
+    )
+    risks.forEach((item) => delete item.date)
+
+    return totalDocuments.data.map((item, index) => ({
+      ...item,
+      ...risks[index],
+    }))
+  }, [data])
+
+  const settings = useMemo(() => {
+    if (!data && !data?.length) return {}
+    const [totalDocuments, riskFactors] = data
+
+    return {
+      dots: false,
+      arrows: false,
+      slidesToShow:
+        totalDocuments.data.length > 8 ? 8 : totalDocuments.data.length,
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 1090,
+          settings: {
+            slidesToShow:
+              totalDocuments.data.length > 6 ? 6 : totalDocuments.data.length,
+          },
         },
-      },
-      {
-        breakpoint: 760,
-        settings: {
-          slidesToShow: data[0].data.length > 5 ? 5 : data[0].data.length,
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 1,
+          },
         },
-      },
-      {
-        breakpoint: 425,
-        settings: {
-          slidesToShow: data[0].data.length > 2 ? 2 : data[0].data.length,
+        {
+          breakpoint: 425,
+          settings: {
+            slidesToShow: 1,
+          },
         },
-      },
-    ],
-  }
+      ],
+    }
+  }, [data])
 
   return (
     <div className={css.slider_carousel}>
@@ -64,7 +74,7 @@ export default function SliderCarousel({ data, publicationData }) {
           <p className={css.carousel_p}>Всего</p>
           <p className={css.carousel_p}>Риски</p>
         </div>
-        {!publicationData ? (
+        {!data ? (
           <div className={css.loader}>
             <img className={css.loader_img} src={load} alt=""></img>
             <p className={css.loader_text}>Загружаем данные</p>

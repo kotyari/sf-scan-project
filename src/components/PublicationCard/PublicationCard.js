@@ -43,7 +43,7 @@ export default function PublicationCard({ item }) {
         <a className={css.unset_a} href={item.ok.url} target="_blank">
           <button className={css.doc_readbtn}>Читать в источнике</button>
         </a>
-        <p className={css.doc_words}>{item.ok.attributes.wordCount} слова</p>
+        <p className={css.doc_words}>{item.ok.attributes.wordCount} слов</p>
       </div>
     </div>
   )
